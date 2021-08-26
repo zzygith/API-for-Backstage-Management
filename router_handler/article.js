@@ -29,3 +29,54 @@ module.exports.addArticle = (req, res) => {
     })
     
 }
+
+module.exports.getArticleList = (req, res) => {
+    const sql = 'select id,title, pub_date, state, cate_id from my_db_01.ev_articles where author_id=? and is_delete=0'
+    db.query(sql, req.user.id, (err, results) => {
+        if (err) {
+            return res.send({
+                status: 1,
+                message:err.message
+            })
+        }
+        res.send({
+            status: 0,
+            message: 'Get article successfully!',
+            data:results
+        })
+    })
+    
+}
+
+module.exports.deleteArticle = (req, res) => {
+    const sql = 'update my_db_01.ev_articles set is_delete=1 where id=?'
+    db.query(sql, req.params.id, (err, results) => {
+        if (err) {
+            return res.send({
+                status: 1,
+                message:err.message
+            })
+        }
+        res.send({
+            status: 0,
+            message: 'Delete article successfully!',
+        })
+    })
+}
+
+module.exports.getArticle = (req, res) => {
+    const sql = 'select * from my_db_01.ev_articles where id=?'
+    db.query(sql, req.params.id, (err, results) => {
+        if (err) {
+            return res.send({
+                status: 1,
+                message:err.message
+            })
+        }
+        res.send({
+            status: 0,
+            message: 'Get article successfully!',
+            data:results
+        })
+    })
+}

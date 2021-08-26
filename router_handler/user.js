@@ -31,7 +31,6 @@ module.exports.regUser = (req, res) => {
 
         //Encrypt password
         userinfo.password = bcrypt.hashSync(userinfo.password, 10)
-        console.log(userinfo);
 
         const sql = 'insert into my_db_01.ev_users set ?';
         db.query(sql, { username: userinfo.username, password: userinfo.password }, (err, results) => {

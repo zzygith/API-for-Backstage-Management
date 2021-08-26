@@ -13,4 +13,10 @@ const {add_article_schema}=require('../schema/article')
 
 router.post('/add', expressJoi(add_article_schema), articlehandle.addArticle);
 
+router.get('/list', articlehandle.getArticleList);
+
+router.get('/delete/:id', articlehandle.deleteArticle);
+
+router.get('/:id', articlehandle.getArticle);
+
 module.exports = router;
