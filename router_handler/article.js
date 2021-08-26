@@ -8,7 +8,7 @@ module.exports.addArticle = (req, res) => {
         pub_date: new Date(),
         author_id:req.user.id
     }
-    const sql = 'insert into my_db_01.ev_articles set ?';
+    const sql = 'insert into ev_articles set ?';
     db.query(sql, articleInfo, (err, results) => {
         if (err) {
             res.send({
@@ -31,7 +31,7 @@ module.exports.addArticle = (req, res) => {
 }
 
 module.exports.getArticleList = (req, res) => {
-    const sql = 'select id,title, pub_date, state, cate_id from my_db_01.ev_articles where author_id=? and is_delete=0'
+    const sql = 'select id,title, pub_date, state, cate_id from ev_articles where author_id=? and is_delete=0'
     db.query(sql, req.user.id, (err, results) => {
         if (err) {
             return res.send({
@@ -49,7 +49,7 @@ module.exports.getArticleList = (req, res) => {
 }
 
 module.exports.deleteArticle = (req, res) => {
-    const sql = 'update my_db_01.ev_articles set is_delete=1 where id=?'
+    const sql = 'update ev_articles set is_delete=1 where id=?'
     db.query(sql, req.params.id, (err, results) => {
         if (err) {
             return res.send({
@@ -65,7 +65,7 @@ module.exports.deleteArticle = (req, res) => {
 }
 
 module.exports.getArticle = (req, res) => {
-    const sql = 'select * from my_db_01.ev_articles where id=?'
+    const sql = 'select * from ev_articles where id=?'
     db.query(sql, req.params.id, (err, results) => {
         if (err) {
             return res.send({

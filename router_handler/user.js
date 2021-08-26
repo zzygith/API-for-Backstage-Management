@@ -12,7 +12,7 @@ const config=require('../config')
 module.exports.regUser = (req, res) => {
     const userinfo = req.body;
 
-    const sqlStr = 'select * from my_db_01.ev_users where username=?';
+    const sqlStr = 'select * from ev_users where username=?';
     db.query(sqlStr, userinfo.username, (err, results) => {
         if (err) {
             return res.send({
@@ -32,7 +32,7 @@ module.exports.regUser = (req, res) => {
         //Encrypt password
         userinfo.password = bcrypt.hashSync(userinfo.password, 10)
 
-        const sql = 'insert into my_db_01.ev_users set ?';
+        const sql = 'insert into ev_users set ?';
         db.query(sql, { username: userinfo.username, password: userinfo.password }, (err, results) => {
             if (err) {
                 return res.send({
@@ -59,7 +59,7 @@ module.exports.regUser = (req, res) => {
 module.exports.login = (req, res) => {
     const userinfo = req.body;
 
-    const sqlStr = 'select * from my_db_01.ev_users where username=?'
+    const sqlStr = 'select * from ev_users where username=?'
     db.query(sqlStr, userinfo.username, (err, results) => {
         //Fail to execute sql.
         if (err) {
