@@ -51,6 +51,11 @@ app.use((err, req, res, next) => {
 })
 
 //Start sever
-app.listen(3007, () => {
+/* app.listen(3007, () => {
+    console.log('api server is running at http://127.0.0.1:3007');
+}) */
+
+//Start sever
+ app.listen(process.env.PORT || 3007, () => {
     console.log('api server is running at http://127.0.0.1:3007');
 })
