@@ -43,7 +43,7 @@ app.use((err, req, res, next) => {
     if (err.name === 'UnauthorizedError') {
         return res.send({
             status: 1,
-            message:'Fail to verify ID'
+            message:'Fail to verify ID.'
         })
         
     }

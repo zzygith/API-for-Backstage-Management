@@ -17,7 +17,7 @@ module.exports.getUserInfo = (req, res) => {
         if (results.length !== 1) {
             return res.send({
                 status: 1,
-                message:'Fail to get user information'
+                message:'Fail to get user information.'
             })
         }
         res.send({
